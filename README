@@ -1,0 +1,31 @@
+# MCheckout
+
+## Usage
+
+```
+rules = [Rules::BulkDiscount, Rules::TwoForOne]
+co = Checkount.new rules
+co.scan("FR1")
+co.scan("SR1")
+co.scan("FR1")
+co.scan("FR1")
+co.scan("CF1")
+co.total
+=> 22.45
+
+rules = [Rules::TwoForOne]
+co = Checkount.new rules
+co.scan("FR1")
+co.scan("FR1")
+co.total
+=> 3.11
+
+rules = [Rules::BulkDiscount, Rules::TwoForOne]
+co = Checkount.new rules
+co.scan("FR1")
+co.scan("SR1")
+co.scan("FR1")
+co.scan("SR1")
+co.total
+=> 16.61
+```

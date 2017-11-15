@@ -1,13 +1,13 @@
 module Rules
   class TwoForOne
-    MINIMUM = 1.0
+    MINIMUM_ITEMS = 1.0
 
     def initialize(basket)
       @basket = basket
     end
 
     def elegible?
-      number_of_elegible_items > MINIMUM
+      elegible_item && number_of_elegible_items > MINIMUM_ITEMS
     end
 
     def discount
@@ -18,11 +18,11 @@ module Rules
     attr_reader :basket
 
     def elegible_item
-      basket.find { |product| product[:code] == "FR1" }
+      @elegible_item ||= basket.find { |product| product[:code] == "FR1" }
     end
 
     def number_of_elegible_items
-      basket.count { |product| product[:code] == "FR1" }
+      @number_of_elegible_items ||= basket.count { |product| product[:code] == "FR1" }
     end
 
     def number_of_free_items
@@ -30,7 +30,7 @@ module Rules
     end
 
     def free_ratio
-      MINIMUM / number_of_elegible_items
+      MINIMUM_ITEMS / number_of_elegible_items
     end
   end
 end

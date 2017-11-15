@@ -1,5 +1,5 @@
-require 'pry'
 require './lib/rules/two_for_one'
+require './lib/rules/bulk_discount'
 
 class Checkout
   PRODUCTS = [
