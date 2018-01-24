@@ -6,23 +6,23 @@ module Rules
       @basket = basket
     end
 
-    def elegible?
-      elegible_item && number_of_elegible_items > MINIMUM_ITEMS
+    def eligible?
+      number_of_elegible_items > MINIMUM_ITEMS
     end
 
     def discount
-      elegible_item[:price] * number_of_free_items
+      eligible_item[:price] * number_of_free_items
     end
 
     private
     attr_reader :basket
 
-    def elegible_item
-      @elegible_item ||= basket.find { |product| product[:code] == "FR1" }
+    def eligible_item
+      @eligible_item ||= basket.find { |item| item[:code] == "FR1" }
     end
 
     def number_of_elegible_items
-      @number_of_elegible_items ||= basket.count { |product| product[:code] == "FR1" }
+      @number_of_elegible_items ||= basket.count { |item| item[:code] == "FR1" }
     end
 
     def number_of_free_items

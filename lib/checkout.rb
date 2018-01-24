@@ -2,24 +2,6 @@ require './lib/rules/two_for_one'
 require './lib/rules/bulk_discount'
 
 class Checkout
-  PRODUCTS = [
-    {
-      code: "FR1",
-      name: "Fruit Tea",
-      price: 3.11
-    },
-    {
-      code: "SR1",
-      name: "Strawberries",
-      price: 5.00
-    },
-    {
-      code: "CF1",
-      name: "Coffee",
-      price: 11.23
-    }
-  ]
-
   def initialize(pricing_rules)
     @pricing_rules = pricing_rules
     @basket = []
@@ -27,7 +9,7 @@ class Checkout
   end
 
   def scan(product_code)
-    basket << PRODUCTS.find { |product| product[:code] == product_code }
+    basket << Warehouse.find("FR1")
   end
 
   def total
@@ -38,7 +20,7 @@ class Checkout
     @pricing_rules.each do |pricing_rule|
       rule = pricing_rule.new(basket)
 
-      if rule.elegible?
+      if rule.eligible?
         @total -= rule.discount
       end
     end

@@ -15,7 +15,7 @@ module Rules
       end
 
       context "when the basket has 2 strawberries" do
-        let(:basket) { ["SR1", "SR1"] }
+        let(:basket) { 2.times.map { Warehouse.find("SR1") } }
 
         it "is not eligible" do
           expect(
@@ -25,7 +25,7 @@ module Rules
       end
 
       context "when the basket has 3 strawberries" do
-        let(:basket) { ["SR1", "SR1", "SR1"] }
+        let(:basket) { 3.times.map { Warehouse.find("SR1") } }
 
         it "is eligible" do
           expect(
@@ -45,7 +45,7 @@ module Rules
       end
 
       context "when the basket has 3 strawberries" do
-        let(:basket) { ["SR1", "SR1", "SR1"] }
+        let(:basket) { 3.times.map { Warehouse.find("SR1") } }
 
         it "returns 0.50" do
           expect(
@@ -55,7 +55,7 @@ module Rules
       end
 
       context "when the basket has 4 strawberries" do
-        let(:basket) { ["SR1", "SR1", "SR1", "SR1"] }
+        let(:basket) { 4.times.map { Warehouse.find("SR1") } }
 
         it "returns 0.50" do
           expect(
@@ -65,7 +65,7 @@ module Rules
       end
 
       context "when the basket has 6 strawberries" do
-        let(:basket) { ["SR1", "SR1", "SR1", "SR1", "SR1", "SR1"] }
+        let(:basket) { 6.times.map { Warehouse.find("SR1") } }
 
         it "returns 1.0" do
           expect(

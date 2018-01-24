@@ -8,19 +8,19 @@ module Rules
     end
 
     def eligible?
-      number_of_elegible_items >= MINIMUM_ITEMS
+      number_of_eligible_items >= MINIMUM_ITEMS
     end
 
     def discount
-      factor = (number_of_elegible_items / MINIMUM_ITEMS).floor
+      factor = (number_of_eligible_items / MINIMUM_ITEMS).floor
       DISCOUNT_VALUE_PER_ITEM * factor
     end
 
     private
     attr_reader :basket
 
-    def number_of_elegible_items
-      @number_of_elegible_items ||= basket.count { |code| code == "SR1" }
+    def number_of_eligible_items
+      @number_of_eligible_items ||= basket.count { |item| item[:code] == "SR1" }
     end
   end
 end
